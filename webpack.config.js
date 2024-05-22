@@ -6,11 +6,9 @@ module.exports = {
     entry: './src/main.js',
     output: {
         filename: 'bundle.js',
-        // eslint-disable-next-line no-undef
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'amd/src'),
         library: 'MyLibrary',
-        libraryTarget: 'umd',
-        publicPath: '/blocks/disealytics_vue/dist/'
+        libraryTarget: 'amd',
     },
     module: {
         rules: [
@@ -21,13 +19,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env'],
-                        sourceMaps: 'inline',
-                    },
-                },
+                use: 'babel-loader',
             },
             {
                 test: /\.css$/,
@@ -37,7 +29,6 @@ module.exports = {
     },
     resolve: {
         alias: {
-            // eslint-disable-next-line no-undef
             '@': path.resolve(__dirname, 'src'),
             vue$: 'vue/dist/vue.esm-bundler.js',
         },
@@ -50,5 +41,5 @@ module.exports = {
         minimize: true,
         minimizer: [new TerserPlugin()],
     },
-    devtool: 'source-map',
+    mode: 'production',
 };

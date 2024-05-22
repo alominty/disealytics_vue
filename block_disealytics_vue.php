@@ -51,7 +51,7 @@ class block_disealytics_vue extends block_base {
 
         // Properly include the JavaScript file using AMD module.
         $this->page->requires->js_call_amd(
-            'block_disealytics_vue/bundle',
+            'block_disealytics_vue/init_app',
             'init'
         );
 
