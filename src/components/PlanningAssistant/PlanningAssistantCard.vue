@@ -1,8 +1,10 @@
 <template>
   <Card :title="title">
     <div>
-      <!-- Planning Assistant specific content goes here -->
-      <p>Planning Assistant Content</p>
+      <p v-if="viewMode === 'module'">Module-specific content for Planning Assistant</p>
+      <p v-else-if="viewMode === 'semester'">Semester-specific content for Planning Assistant</p>
+      <p v-else-if="viewMode === 'global'">Global-specific content for Planning Assistant</p>
+      <p v-else>Default content for Planning Assistant</p>
     </div>
   </Card>
 </template>
@@ -16,12 +18,19 @@ export default {
   components: {
     Card,
   },
-  setup() {
+  props: {
+    viewMode: {
+      type: String,
+      required: true,
+    },
+  },
+  setup(props) {
     const langStrings = inject('langStrings');
     const title = langStrings ? langStrings.planning_assistant_card : 'Planning Assistant';
 
     return {
       title,
+      viewMode: props.viewMode,
     };
   },
 };

@@ -6,7 +6,7 @@
       <option value="global">Global View</option>
     </select>
 
-    <component :is="currentView"></component>
+    <component :is="currentView" :viewMode="selectedView"></component>
   </div>
 </template>
 

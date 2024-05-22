@@ -14,27 +14,34 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Renders the Vue component.
+ * Initialize the Vue application.
  *
- * @module      block_disealytics_vue/bundle
+ * @module      block_disealytics_vue/init_app
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 define(['block_disealytics_vue/bundle'], function(MyLibrary) {
     return {
+        /**
+         * Initialize the Vue app with the provided parameters.
+         *
+         * @param {Object} params The initialization parameters.
+         */
         init: function(params) {
             if (typeof Vue === 'undefined') {
-                window.console.error('Vue is not loaded');
+                console.error('Vue is not loaded');
                 return;
             }
 
             if (MyLibrary && MyLibrary.init) {
                 MyLibrary.init(params.langStrings);
             } else {
-                window.console.error('Failed to initialize the library');
+                console.error('Failed to initialize the library');
             }
         }
     };
 });
+
+
 
 
 

@@ -24,9 +24,9 @@
     "style-loader": "^2.0.0",
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.5",
-    "grunt": "^1.4.1",
-    "grunt-contrib-uglify": "^5.0.1",
-    "grunt-contrib-watch": "^1.1.0"
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^7.14.0",
+    "babel-eslint": "^10.1.0"
   },
   "author": "Anna-Lena Langhans",
   "license": "ISC"

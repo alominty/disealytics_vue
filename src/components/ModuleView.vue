@@ -1,30 +1,24 @@
 <template>
-  <div>
-    <p>MODULE VIEW</p>
-    <PlanningAssistantCard />
-  </div>
+  <Card title="Module View">
+    <PlanningAssistant :viewMode="viewMode" />
+  </Card>
 </template>
 
 <script>
-import PlanningAssistantCard from './PlanningAssistant/PlanningAssistantCard.vue';
-// import ActivityCard from './Activity/ActivityCard.vue';
-// import AssignmentsCard from './Assignments/AssignmentsCard.vue';
-// import LearningGoalsCard from './LearningGoals/LearningGoalsCard.vue';
-// import LearningMaterialsCard from './LearningMaterials/LearningMaterialsCard.vue';
-// import SuccessChanceCard from './SuccessChance/SuccessChanceCard.vue';
-// import StudyProgressCard from './StudyProgress/StudyProgressCard.vue';
-
+import Card from './Card.vue';
+import PlanningAssistant from './PlanningAssistant/PlanningAssistantCard.vue';
 
 export default {
   name: 'ModuleView',
   components: {
-    PlanningAssistantCard,
-    // ActivityCard,
-    // LearningGoalsCard,
-    // LearningMaterialsCard,
-    // SuccessChanceCard,
-    // AssignmentsCard,
-    // StudyProgressCard,
+    Card,
+    PlanningAssistant,
+  },
+  props: {
+    viewMode: {
+      type: String,
+      required: true,
+    },
   },
 };
 </script>
