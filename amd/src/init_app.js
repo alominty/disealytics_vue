@@ -19,18 +19,23 @@
  * @module      block_disealytics_vue/bundle
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-define([], function() {
+define(['block_disealytics_vue/bundle'], function(MyLibrary) {
     return {
-        init: function() {
-            require(['block_disealytics_vue/bundle'], function(MyLibrary) {
-                if (MyLibrary && MyLibrary.init) {
-                    MyLibrary.init();
-                } else {
-                    window.console.error('Failed to initialize the library');
-                }
-            });
+        init: function(params) {
+            if (typeof Vue === 'undefined') {
+                window.console.error('Vue is not loaded');
+                return;
+            }
+
+            if (MyLibrary && MyLibrary.init) {
+                MyLibrary.init(params.langStrings);
+            } else {
+                window.console.error('Failed to initialize the library');
+            }
         }
     };
 });
+
+
 
 

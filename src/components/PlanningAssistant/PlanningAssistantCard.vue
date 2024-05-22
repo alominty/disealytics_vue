@@ -1,46 +1,32 @@
 <template>
-  <div>
-    <button @click="showModal">Add Event</button>
-    <planning-assistant-modal v-if="isModalVisible" @close="isModalVisible = false" @save="addEvent"></planning-assistant-modal>
-    <calendar :events="events"></calendar>
-  </div>
+  <Card :title="title">
+    <div>
+      <!-- Planning Assistant specific content goes here -->
+      <p>Planning Assistant Content</p>
+    </div>
+  </Card>
 </template>
 
 <script>
-import { usePlanningAssistantStore } from '@/stores/planningAssistantStore';
-import PlanningAssistantModal from './PlanningAssistantModal.vue';
-import Calendar from './Calendar.vue';
+import { inject } from 'vue';
+import Card from '../Card.vue';
 
 export default {
-  name: 'PlanningAssistantCard',
+  name: 'PlanningAssistant',
   components: {
-    PlanningAssistantModal,
-    Calendar
+    Card,
   },
-  data() {
+  setup() {
+    const langStrings = inject('langStrings');
+    const title = langStrings ? langStrings.planning_assistant_card : 'Planning Assistant';
+
     return {
-      isModalVisible: false
+      title,
     };
   },
-  computed: {
-    events() {
-      const store = usePlanningAssistantStore();
-      return store.events;
-    }
-  },
-  methods: {
-    showModal() {
-      this.isModalVisible = true;
-    },
-    addEvent(event) {
-      const store = usePlanningAssistantStore();
-      store.addEvent(event);
-      this.isModalVisible = false;
-    }
-  },
-  mounted() {
-    const store = usePlanningAssistantStore();
-    store.fetchEvents();
-  }
 };
 </script>
+
+<style scoped>
+/* Add any specific styles for the Planning Assistant here */
+</style>

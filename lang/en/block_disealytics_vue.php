@@ -25,5 +25,15 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'DiSEA Dashboard Vue';
+$string['pluginname'] = 'Learning Dashboard Vue';
 $string['plugin-title'] = 'Learning Dashboard Vue';
+$string['moduleview'] = 'Module View';
+$string['semester_view'] = 'Semester View';
+$string['global_view'] = 'Global View';
+$string['activity_card'] = 'Activity';
+$string['learning_goals_card'] = 'Learning Goals';
+$string['planning_assistant_card'] = 'Planning Assistant Title';
+$string['learning_progress_card'] = 'Learning Progress';
+$string['success_chance_card'] = 'Success Chance';
+$string['assignments_card'] = 'Assignments';
+$string['study_progress_card'] = 'Study Progress';

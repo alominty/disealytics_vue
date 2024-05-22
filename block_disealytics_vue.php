@@ -49,17 +49,40 @@ class block_disealytics_vue extends block_base {
             return $this->content;
         }
 
-        // Properly include the JavaScript file using AMD module.
-        $this->page->requires->js_call_amd(
-            'block_disealytics_vue/init_app',
-            'init'
-        );
+        // Embed Vue.js globally into the page.
+        $this->page->requires->js(new moodle_url('https://cdn.jsdelivr.net/npm/vue@3.2.0/dist/vue.global.min.js'), true);
+
+        // Embed the language strings into the page.
+        $this->page->requires->js_call_amd('block_disealytics_vue/init_app', 'init', [
+                'langStrings' => $this->get_all_language_strings(),
+        ]);
 
         $this->content = new stdClass();
         $this->content->text = '<div id="vue-app"></div>';
         $this->content->footer = '';
 
         return $this->content;
+    }
+
+    /**
+     * Get all language strings for the block.
+     *
+     * @return array
+     * @throws coding_exception
+     */
+    private function get_all_language_strings() {
+        global $CFG;
+        $component = 'block_disealytics_vue';
+        $langfile = $CFG->dirroot . '/blocks/disealytics_vue/lang/en/block_disealytics_vue.php';
+        $strings = [];
+
+        if (file_exists($langfile)) {
+            include($langfile);
+            foreach ($string as $key => $value) {
+                $strings[$key] = get_string($key, $component);
+            }
+        }
+        return $strings;
     }
 
     /**

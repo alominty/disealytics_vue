@@ -1,31 +1,41 @@
 <template>
   <div>
-    <select v-model="selectedView" @change="changeView">
+    <select v-model="selectedView">
       <option value="module">Module View</option>
       <option value="semester">Semester View</option>
       <option value="global">Global View</option>
     </select>
-    <router-view></router-view>
+
+    <component :is="currentView"></component>
   </div>
 </template>
 
 <script>
-import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import ModuleView from './ModuleView.vue';
+import SemesterView from './SemesterView.vue';
+import GlobalView from './GlobalView.vue';
+import { ref, computed } from 'vue';
 
 export default {
   name: 'DashboardView',
+  components: {
+    ModuleView,
+    SemesterView,
+    GlobalView
+  },
   setup() {
-    const router = useRouter();
     const selectedView = ref('module');
 
-    const changeView = () => {
-      router.push({ path: `/${selectedView.value}` });
-    };
+    const currentView = computed(() => {
+      if (selectedView.value === 'module') return 'ModuleView';
+      if (selectedView.value === 'semester') return 'SemesterView';
+      if (selectedView.value === 'global') return 'GlobalView';
+      return 'ModuleView';
+    });
 
     return {
       selectedView,
-      changeView
+      currentView
     };
   }
 };

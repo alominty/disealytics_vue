@@ -29,8 +29,9 @@ module.exports = {
     },
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, 'src'),
             vue$: 'vue/dist/vue.esm-bundler.js',
+            '@': path.resolve(__dirname, 'src'),
+            'block_disealytics_vue/strings': path.resolve(__dirname, 'src/mock/strings.js'),
         },
         extensions: ['*', '.js', '.vue', '.json'],
     },
@@ -38,6 +39,7 @@ module.exports = {
         new VueLoaderPlugin(),
     ],
     optimization: {
+        splitChunks: false,
         minimize: true,
         minimizer: [new TerserPlugin()],
     },
