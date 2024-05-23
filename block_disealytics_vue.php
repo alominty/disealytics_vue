@@ -42,15 +42,15 @@ class block_disealytics_vue extends block_base {
             return $this->content;
         }
 
-        // Include Vue.js globally
-        global $PAGE, $USER, $CFG;
+        // Include Vue.js globally.
+        global $CFG;
         $lang = current_language();
         if (empty($lang)) {
             $lang = $CFG->lang;
         }
 
-        $PAGE->requires->js(new moodle_url('https://cdn.jsdelivr.net/npm/vue@3.2.0/dist/vue.global.min.js'), true);
-        $PAGE->requires->js_call_amd('block_disealytics_vue/init_app', 'init', [
+        $this->page->requires->js(new moodle_url('https://cdn.jsdelivr.net/npm/vue@3.2.0/dist/vue.global.min.js'), true);
+        $this->page->requires->js_call_amd('block_disealytics_vue/init_app', 'init', [
                 'lang' => $lang,
                 'langStrings' => $this->get_all_language_strings($lang),
         ]);
