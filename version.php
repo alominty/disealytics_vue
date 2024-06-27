@@ -26,6 +26,6 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'block_disealytics_vue';
 $plugin->release = '0.1.1';
-$plugin->version = 2024052305;
+$plugin->version = 2024052700;
 $plugin->requires = 2021051700;
 $plugin->maturity = MATURITY_ALPHA;
